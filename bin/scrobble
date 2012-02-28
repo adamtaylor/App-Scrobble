@@ -1,0 +1,7 @@
+#!/usr/env/perl
+
+use App::Scrobble;
+
+my $app = App::Scrobble->new_with_options();
+
+$app->scrobble();
