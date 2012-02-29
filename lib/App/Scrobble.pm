@@ -1,32 +1,37 @@
+# ABSTRACT: Command line scrobbling app
 package App::Scrobble;
 
 use Moose;
-with 'MooseX::GetOpt', 'MooseX::SimpleConfig';
+with 'MooseX::Getopt::Dashes'; #'MooseX::SimpleConfig';
 
 use Module::PluginFinder;
-use Net::LastFM::Submit;
+use Net::LastFM::Submission;
 
 has 'username' => (
     is => 'rw',
+    documentation => 'Your last.fm username',
 );
 
 has 'password' => (
     is => 'rw',
+    documentation => 'Your last.fm password',
 );
 
 has 'url' => (
     is => 'rw',
+    documentation => 'The URL of the thing you\'d like to scrobble',
 );
 
 has 'configfile' => (
     is => 'rw',
-    default => "$HOME/.scrobble",
+    default => "/.scrobble",
 );
 
-has 'dry-run' => (
+has 'dry_run' => (
     is => 'rw',
     isa => 'Bool',
     default => 0,
+    documentation => 'Show what would have been scrobbled but doesn\'t actually scrobble',
 );
 
 has 'finder' => (
@@ -53,6 +58,30 @@ sub scrobble {
     my $self = shift;
 
     my $service = $self->finder->construct( $self->url, $self->url );
+
+    my $tracks = $service->get_data;
+
+    $self->_scrobble_tracks( $tracks );
+}
+
+sub _scrobble_tracks {
+    my $self = shift;
+    my $tracks = shift;
+
+    my $lastfm = Net::LastFM::Submission->new;
+
+    foreach my $track ( @{ $tracks } ) {
+
+        my $artist = $track->{artist};
+        my $track = $track->{track};
+
+        print "Scrobbling track: $track artist: $artist";# if $self->verbose;
+
+        $lastfm->submit({
+            artist => $artist,
+            track  => $track,
+        }) unless $self->dry_run;
+    }
 }
 
 1;
