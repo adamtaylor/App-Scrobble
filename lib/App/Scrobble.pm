@@ -9,11 +9,13 @@ use Net::LastFM::Submission;
 
 has 'username' => (
     is => 'rw',
+    required => 1,
     documentation => 'Your last.fm username',
 );
 
 has 'password' => (
     is => 'rw',
+    required => 1,
     documentation => 'Your last.fm password',
 );
 
