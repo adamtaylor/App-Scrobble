@@ -18,6 +18,7 @@ has 'password' => (
 );
 
 has 'url' => (
+    required => 1,
     is => 'rw',
     documentation => 'The URL of the thing you\'d like to scrobble',
 );
@@ -34,9 +35,15 @@ has 'dry_run' => (
     documentation => 'Show what would have been scrobbled but doesn\'t actually scrobble',
 );
 
+has 'verbose' => (
+    is => 'rw',
+    documentation => 'Prints out information about progress',
+);
+
 has 'finder' => (
     is => 'ro',
     lazy_build => 1,
+    traits => [ 'NoGetopt' ],
 );
 
 sub _build_finder {
