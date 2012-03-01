@@ -37,6 +37,8 @@ has 'dry_run' => (
 
 has 'verbose' => (
     is => 'rw',
+    isa => 'Bool',
+    default => 0,
     documentation => 'Prints out information about progress',
 );
 
@@ -82,7 +84,7 @@ sub _scrobble_tracks {
         my $artist = $track->{artist};
         my $track = $track->{track};
 
-        print "Scrobbling track: $track artist: $artist";# if $self->verbose;
+        print "Scrobbling track: $track artist: $artist" if $self->verbose;
 
         $lastfm->submit({
             artist => $artist,
