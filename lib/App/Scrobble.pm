@@ -11,19 +11,22 @@ use Net::LastFM::Submission;
 
 has 'username' => (
     is => 'rw',
+    isa => 'Str',
     required => 1,
     documentation => 'Your last.fm username',
 );
 
 has 'password' => (
     is => 'rw',
+    isa => 'Str',
     required => 1,
     documentation => 'Your last.fm password',
 );
 
 has 'url' => (
-    required => 1,
     is => 'rw',
+    isa => 'Str',
+    required => 1,
     documentation => 'The URL of the thing you\'d like to scrobble',
 );
 
@@ -47,7 +50,7 @@ has 'verbose' => (
 );
 
 has 'finder' => (
-    is => 'ro',
+    is => 'rw',
     lazy_build => 1,
     traits => [ 'NoGetopt' ],
 );
@@ -70,9 +73,12 @@ sub _build_finder {
 sub scrobble {
     my $self = shift;
 
-    my $service = $self->finder->construct( $self->url, $self->url );
+    warn $self->username;
+    warn $self->url;
 
-    my $tracks = $service->get_data;
+    my $service = $self->finder->construct( $self->url, { url => $self->url } );
+
+    my $tracks = $service->get_tracks;
 
     $self->_scrobble_tracks( $tracks );
 }
@@ -86,7 +92,7 @@ sub _scrobble_tracks {
     foreach my $track ( @{ $tracks } ) {
 
         my $artist = $track->{artist};
-        my $track = $track->{track};
+        my $track  = $track->{title};
 
         print "Scrobbling track: $track artist: $artist" if $self->verbose;
 
