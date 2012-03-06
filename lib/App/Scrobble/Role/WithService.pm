@@ -5,15 +5,24 @@ package App::Scrobble::Role::WithService;
 
 use Moose::Role;
 
-has 'data' => (
+has 'tracks' => (
     is => 'rw',
     isa => 'ArrayRef',
     default => sub { [] },
+    traits  => ['Array'],
+    handles => {
+        add_track => 'push',
+    }
 );
 
-requires 'construct';
+has 'url' => (
+    is => 'rw',
+    isa => 'Str',
+);
 
-requires 'get_data';
+requires 'is_plugin_for';
+
+requires 'get_tracks';
 
 1;
 
