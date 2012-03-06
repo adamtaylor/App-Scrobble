@@ -73,9 +73,6 @@ sub _build_finder {
 sub scrobble {
     my $self = shift;
 
-    warn $self->username;
-    warn $self->url;
-
     my $service = $self->finder->construct( $self->url, { url => $self->url } );
 
     my $tracks = $service->get_tracks;
@@ -87,14 +84,19 @@ sub _scrobble_tracks {
     my $self = shift;
     my $tracks = shift;
 
-    my $lastfm = Net::LastFM::Submission->new;
+    my $lastfm = Net::LastFM::Submission->new(
+        user     => $self->username,
+        password => $self->password,
+    );
+
+    $lastfm->handshake;
 
     foreach my $track ( @{ $tracks } ) {
 
         my $artist = $track->{artist};
         my $track  = $track->{title};
 
-        print "Scrobbling track: $track artist: $artist" if $self->verbose;
+        print "Scrobbling track: $track artist: $artist \n" if $self->verbose;
 
         $lastfm->submit({
             artist => $artist,
