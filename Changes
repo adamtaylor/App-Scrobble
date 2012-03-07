@@ -1,0 +1,5 @@
+{{$NEXT}}
+
+- Initial release of a command line scrobbling client
+- Only supports options passed over the command line
+- Only has support for one "service" - Mixcloud
