@@ -1,5 +1,9 @@
 #!/usr/env/perl
 
+# ABSTRACT: Command line scrobbling client
+# PODNAME: App::scrobble
+# VERSION
+
 use App::Scrobble;
 
 my $app = App::Scrobble->new_with_options();
