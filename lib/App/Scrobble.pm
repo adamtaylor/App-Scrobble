@@ -89,7 +89,10 @@ sub _scrobble_tracks {
         password => $self->password,
     );
 
-    $lastfm->handshake;
+    my $ret = $lastfm->handshake;
+
+    my $time = time;
+    my $count = 0;
 
     foreach my $track ( @{ $tracks } ) {
 
@@ -98,10 +101,13 @@ sub _scrobble_tracks {
 
         print "Scrobbling track: $track artist: $artist \n" if $self->verbose;
 
-        $lastfm->submit({
+        my $ret = $lastfm->submit({
             artist => $artist,
-            track  => $track,
+            title  => $track,
+            time   => $time - ( $count *  3 * 60 ),
         }) unless $self->dry_run;
+
+        $count++;
     }
 }
 
