@@ -36,13 +36,13 @@ __END__
 
 =head1 ATTRIBUTES
 
-=head2 C<data>
+=head2 C<tracks>
 
 =head1 METHODS
 
-=head2 C<construct>
+=head2 C<is_plugin_for>>
 
-=head2 C<get_data>
+=head2 C<get_tracks>
 
 =head1 SEE ALSO
 
