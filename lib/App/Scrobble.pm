@@ -30,10 +30,10 @@ has 'url' => (
     documentation => 'The URL of the thing you\'d like to scrobble',
 );
 
-has 'configfile' => (
-    is => 'rw',
-    default => "/.scrobble",
-);
+#has 'configfile' => (
+    #is => 'rw',
+    #default => "/.scrobble",
+#);
 
 has 'dry_run' => (
     is => 'rw',
