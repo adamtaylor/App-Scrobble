@@ -85,9 +85,11 @@ sub _scrobble_tracks {
     my $tracks = shift;
 
     my $lastfm = Net::LastFM::Submission->new(
+        ua       => LWP::UserAgent->new('timeout' => 10, 'env_proxy' => 1),
         user     => $self->username,
         password => $self->password,
     );
+
 
     my $ret = $lastfm->handshake;
 
