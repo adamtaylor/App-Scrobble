@@ -30,7 +30,7 @@ sub get_tracks {
         $self->add_track({
             title => $section->track->name,
             artist => $section->track->artist->name,
-        });
+        }) if $section->has_track;
     }
 
     return $self->tracks;
