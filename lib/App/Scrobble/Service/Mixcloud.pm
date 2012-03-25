@@ -11,11 +11,7 @@ sub is_plugin_for {
     my $class = shift;
     my $url   = shift;
 
-    warn "checking url: $url";
-
     return unless $url =~ /mixcloud\.com/;
-
-    #$self->url( $url );
 
     return 1;
 
