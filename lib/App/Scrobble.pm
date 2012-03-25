@@ -98,8 +98,11 @@ sub _scrobble_tracks {
 
     foreach my $track ( @{ $tracks } ) {
 
+        # Perl::Critic doesn't like variables declared inside a loop...
+        ## no critic
         my $artist = $track->{artist};
         my $track  = $track->{title};
+        ## critic
 
         print "Scrobbling track: $track artist: $artist \n" if $self->verbose;
 
