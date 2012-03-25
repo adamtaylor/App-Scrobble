@@ -1,6 +1,5 @@
-# ABSTRACT:
+# ABSTRACT: Mixcloud plugin
 package App::Scrobble::Service::Mixcloud;
-
 
 use Moose;
 with 'App::Scrobble::Role::WithService';
@@ -35,3 +34,12 @@ sub get_tracks {
 }
 
 1;
+
+=pod
+
+=head2 DESCRIPTION
+
+L<App::Scrobble> plugin for L<Mixcloud|http://www.mixcloud.com>. Will scrobble
+all the tracks in any cloudcast passed to the command line client.
+
+=cut

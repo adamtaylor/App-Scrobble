@@ -98,11 +98,8 @@ sub _scrobble_tracks {
 
     foreach my $track ( @{ $tracks } ) {
 
-        # Perl::Critic doesn't like variables declared inside a loop...
-        ## no critic
         my $artist = $track->{artist};
         my $track  = $track->{title};
-        ## critic
 
         print "Scrobbling track: $track artist: $artist \n" if $self->verbose;
 
@@ -117,3 +114,22 @@ sub _scrobble_tracks {
 }
 
 1;
+
+=pod
+
+=head2 DESCRIPTION
+
+Main functionality of L<App::Scrobble>. Takes the command line arguments and
+instantiates the correct plugin, if one supports the URL to scrobble.
+
+Instructs the plugin to grab the track data and then submits each track to
+L<LastFM|http://www.last.fm>. Makes some vaguely sensible made-up submission times
+so all the tracks aren't submitted at exactly the same time.
+
+Works behind a proxy if you set the C<http_proxy> env var.
+
+=head2 SEE ALSO
+
+L<App::scrobble>
+
+=cut

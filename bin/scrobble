@@ -12,3 +12,31 @@ use App::Scrobble;
 my $app = App::Scrobble->new_with_options();
 
 $app->scrobble();
+
+=pod
+
+=head2 SYNOPSIS
+
+  # scrobble the tracks, limited output
+  scrobble --username foo --password bar --url http://www.mixcloud.com/LaidBackRadio/tj-kid-opolopo-the-best-of-tokyo-dawn-records/
+
+  # scrobble the tracks, verbose output
+  scrobble --username foo --password bar --url http://www.mixcloud.com/LaidBackRadio/tj-kid-opolopo-the-best-of-tokyo-dawn-records/ --verbose
+
+  # don't scrobble the tracks, verbose output
+  scrobble --username foo --password bar --url http://www.mixcloud.com/LaidBackRadio/tj-kid-opolopo-the-best-of-tokyo-dawn-records/ --verbose --dry-run
+
+=head2 DESCRIPTION
+
+Command line application for scrobbling track information to
+L<LastFM|http://www.last.fm>.
+
+Usage information can be optained by:
+
+  scrobble -? | scrobble --help | scrobble --usage | scrobble
+
+=head2 SEE ALSO
+
+L<App::Scrobble>
+
+=cut
