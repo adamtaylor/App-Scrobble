@@ -4,6 +4,9 @@
 # PODNAME: App::scrobble
 # VERSION
 
+use warnings;
+use strict;
+
 use App::Scrobble;
 
 my $app = App::Scrobble->new_with_options();
