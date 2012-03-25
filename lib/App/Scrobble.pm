@@ -103,7 +103,7 @@ sub _scrobble_tracks {
 
         print "Scrobbling track: $track artist: $artist \n" if $self->verbose;
 
-        my $ret = $lastfm->submit({
+        $lastfm->submit({
             artist => $artist,
             title  => $track,
             time   => $time - ( $count *  3 * 60 ),
