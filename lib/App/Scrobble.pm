@@ -117,7 +117,7 @@ sub _scrobble_tracks {
 
 =pod
 
-=head2 DESCRIPTION
+=head1 DESCRIPTION
 
 Main functionality of L<App::Scrobble>. Takes the command line arguments and
 instantiates the correct plugin, if one supports the URL to scrobble.
@@ -128,7 +128,13 @@ so all the tracks aren't submitted at exactly the same time.
 
 Works behind a proxy if you set the C<http_proxy> env var.
 
-=head2 SEE ALSO
+=head1 METHODS
+
+=head2 C<scrobble>
+
+Main sub called by the script.
+
+=head1 SEE ALSO
 
 L<App::scrobble>
 

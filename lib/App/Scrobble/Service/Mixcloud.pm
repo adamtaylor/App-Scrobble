@@ -37,9 +37,19 @@ sub get_tracks {
 
 =pod
 
-=head2 DESCRIPTION
+=head1 DESCRIPTION
 
 L<App::Scrobble> plugin for L<Mixcloud|http://www.mixcloud.com>. Will scrobble
 all the tracks in any cloudcast passed to the command line client.
+
+=head1 METHODS
+
+=head2 C<is_plugin_for>
+
+Returns a boolean if the URL passed in is a mixcloud URL.
+
+=head2 C<get_tracks>
+
+Uses L<WWW::Mixcloud> to construct a hashref of track data from the cloudcast.
 
 =cut
