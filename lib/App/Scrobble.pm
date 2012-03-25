@@ -1,10 +1,10 @@
 # ABSTRACT: Command line scrobbling app
 package App::Scrobble;
 
-# VERSION
-
 use Moose;
 with 'MooseX::Getopt::Dashes'; #'MooseX::SimpleConfig';
+
+# VERSION
 
 use Module::PluginFinder;
 use Net::LastFM::Submission;

@@ -1,9 +1,9 @@
 # ABSTRACT: Role interface for App::Scrobble::Service classes
 package App::Scrobble::Role::WithService;
 
-# VERSION
-
 use Moose::Role;
+
+# VERSION
 
 has 'tracks' => (
     is => 'rw',

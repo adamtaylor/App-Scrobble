@@ -1,11 +1,13 @@
 # ABSTRACT:
 package App::Scrobble::Service::Mixcloud;
 
-# VERSION
 
 use Moose;
-use WWW::Mixcloud;
 with 'App::Scrobble::Role::WithService';
+
+use WWW::Mixcloud;
+
+# VERSION
 
 sub is_plugin_for {
     my $class = shift;

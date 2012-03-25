@@ -1,11 +1,11 @@
 #!/usr/bin/env perl
 
+use warnings;
+use strict;
+
 # ABSTRACT: Command line scrobbling client
 # PODNAME: App::scrobble
 # VERSION
-
-use warnings;
-use strict;
 
 use App::Scrobble;
 
