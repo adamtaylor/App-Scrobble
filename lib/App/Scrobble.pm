@@ -90,8 +90,9 @@ sub _scrobble_tracks {
         password => $self->password,
     );
 
-
+    # XXX catch exception and warn
     my $ret = $lastfm->handshake;
+    # XXX print p $ret if $self->debug
 
     my $time = time;
     my $count = 0;
@@ -108,6 +109,7 @@ sub _scrobble_tracks {
             title  => $track,
             time   => $time - ( $count *  3 * 60 ),
         }) unless $self->dry_run;
+        # XXX print p $ret if $self->debug
 
         $count++;
     }
