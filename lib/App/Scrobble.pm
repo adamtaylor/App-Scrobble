@@ -2,12 +2,14 @@
 package App::Scrobble;
 
 use Moose;
-with 'MooseX::Getopt::Dashes'; #'MooseX::SimpleConfig';
+with 'MooseX::Getopt::Dashes',
+     'MooseX::SimpleConfig';
 
 # VERSION
 
 use Module::PluginFinder;
 use Net::LastFM::Submission;
+use File::HomeDir;
 use Data::Dump qw( pp );
 
 has 'username' => (
@@ -31,10 +33,12 @@ has 'url' => (
     documentation => 'The URL of the thing you\'d like to scrobble',
 );
 
-#has 'configfile' => (
-    #is => 'rw',
-    #default => "/.scrobble",
-#);
+has '+configfile' => (
+    is => 'rw',
+    default => sub {
+        return File::HomeDir->my_home . "/.scrobble.yaml";
+    },
+);
 
 has 'dry_run' => (
     is => 'rw',
