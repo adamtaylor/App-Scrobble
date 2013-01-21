@@ -122,6 +122,7 @@ sub _scrobble_tracks {
 
         print "Scrobbling track: $track artist: $artist \n" if $self->verbose;
 
+        ## no critic
         my $ret = $lastfm->submit({
             artist => $artist,
             title  => $track,
