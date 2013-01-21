@@ -8,6 +8,7 @@ with 'MooseX::Getopt::Dashes'; #'MooseX::SimpleConfig';
 
 use Module::PluginFinder;
 use Net::LastFM::Submission;
+use Data::Dump qw( pp );
 
 has 'username' => (
     is => 'rw',
@@ -47,6 +48,13 @@ has 'verbose' => (
     isa => 'Bool',
     default => 0,
     documentation => 'Prints out information about progress',
+);
+
+has 'debug' => (
+    is => 'rw',
+    isa => 'Bool',
+    default => 0,
+    documentation => 'Print out extra diagnostics, useful if things do not seem to be working',
 );
 
 has 'finder' => (
@@ -90,9 +98,15 @@ sub _scrobble_tracks {
         password => $self->password,
     );
 
-    # XXX catch exception and warn
     my $ret = $lastfm->handshake;
-    # XXX print p $ret if $self->debug
+    print pp $ret if $self->debug;
+
+    # Any errors?
+    if ( exists $ret->{error} ) {
+        warn "There was a problem authenticating with last.fm: "
+            . $ret->{reason}||$ret->{error};
+        exit(1);
+    }
 
     my $time = time;
     my $count = 0;
@@ -104,12 +118,12 @@ sub _scrobble_tracks {
 
         print "Scrobbling track: $track artist: $artist \n" if $self->verbose;
 
-        $lastfm->submit({
+        my $ret = $lastfm->submit({
             artist => $artist,
             title  => $track,
             time   => $time - ( $count *  3 * 60 ),
         }) unless $self->dry_run;
-        # XXX print p $ret if $self->debug
+        print pp $ret if $self->debug;
 
         $count++;
     }
