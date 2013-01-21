@@ -1,5 +1,11 @@
 {{$NEXT}}
 
+- Add debug option
+- Handle errors better (exit)
+- Add support for configfile-based config options
+
+0.01      2012-03-25 13:59:58 Europe/London
+
 - Initial release of a command line scrobbling client
 - Only supports options passed over the command line
 - Only has support for one "service" - Mixcloud
