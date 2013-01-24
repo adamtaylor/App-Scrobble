@@ -120,6 +120,7 @@ sub _scrobble_tracks {
         my $artist = $track->{artist};
         my $track  = $track->{title};
 
+        # XXX use open binmode to correctly encode/decode the output
         print "Scrobbling track: $track artist: $artist \n" if $self->verbose;
 
         ## no critic
