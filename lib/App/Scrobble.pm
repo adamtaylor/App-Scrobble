@@ -2,6 +2,7 @@
 package App::Scrobble;
 
 use Moose;
+use namespace::autoclean;
 with 'MooseX::Getopt::Dashes',
      'MooseX::SimpleConfig';
 
@@ -134,6 +135,8 @@ sub _scrobble_tracks {
         $count++;
     }
 }
+
+__PACKAGE__->meta->make_immutable;
 
 1;
 

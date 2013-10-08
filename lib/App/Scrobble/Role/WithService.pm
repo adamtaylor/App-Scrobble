@@ -2,6 +2,7 @@
 package App::Scrobble::Role::WithService;
 
 use Moose::Role;
+use namespace::autoclean;
 
 # VERSION
 
@@ -23,6 +24,8 @@ has 'url' => (
 requires 'is_plugin_for';
 
 requires 'get_tracks';
+
+__PACKAGE__->meta->make_immutable;
 
 1;
 

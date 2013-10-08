@@ -2,6 +2,7 @@
 package App::Scrobble::Service::Mixcloud;
 
 use Moose;
+use namespace::autoclean;
 with 'App::Scrobble::Role::WithService';
 
 use WWW::Mixcloud;
@@ -32,6 +33,8 @@ sub get_tracks {
 
     return $self->tracks;
 }
+
+__PACKAGE__->meta->make_immutable;
 
 1;
 
