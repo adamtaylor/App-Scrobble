@@ -25,8 +25,6 @@ requires 'is_plugin_for';
 
 requires 'get_tracks';
 
-__PACKAGE__->meta->make_immutable;
-
 1;
 
 __END__
